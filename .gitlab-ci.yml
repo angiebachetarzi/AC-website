@@ -11,7 +11,7 @@ install_dependencies:
  artifacts:
   paths:
    - tig_client/node_modules/
-   - tig_server/node_modules/
+   - node_modules/
    
 testing:
  stage: test
@@ -20,4 +20,3 @@ testing:
  artifacts:
   paths:
    - tig_client/
-   - tig_server/
