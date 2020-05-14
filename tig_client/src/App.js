@@ -21,10 +21,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-       <Header />
-        <p>{this.state.testResponse}</p>
+      <div>
+        <Header />
       </div>
+       
     );
   }
 

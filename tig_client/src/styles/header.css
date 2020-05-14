@@ -1,56 +1,29 @@
 h1 {
-    font-family: 'FinkHeavy';
-    text-align: left;
-    margin-left: 2%;
-    font-weight:bold;
-    font-size: 40px;
+  font-family: 'FinkHeavy';
+  text-align: left;
+  margin-left: 2%;
+  margin-top:1%;
+  font-size: calc(100% + 2vw + 2vh);
 }
 
-.nav {
-    display: inline-block;
+button.navbar-nav-link {
+  font-family: 'Allan';
+  margin-left: 3vw;
+  margin-top: 3vw;
+  background-color: #827157;
+  border-radius: 50px;
+  max-width: calc(100% + 5vw + 5vh);
+  width: calc(10vw + 10vh);
+  font-size: calc(0.7vw + 0.7vh);
+  color: white; 
 }
 
-ul {
-    list-style-type: none;
-    margin:0 auto;
-    padding: 0;
-    overflow: hidden;
-  }
-  
-  li {
-    float: left;
-    background-color: #827157;
-    margin-left: 50px;
-    border-radius: 50px;
-    width: 200px;
-  }
-  
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    font-size: x-large;
-    padding: 14px 16px;
-  }
-  
-  li:hover {
-    filter: drop-shadow(0 0 0.20rem black);
-  }
+button.navbar-nav-link:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: white; 
+}
 
-  a {
-    text-decoration: none;
-  }
+#logoff {
+  background-color: #635642;
+}
 
-  #login, #logoff {
-    position: absolute;
-    top:0;
-    font-size: large;
-  }
-  #login {  
-    right:15%;
-    text-decoration: underline;
-  }
-
-  #logoff {
-    right:2%;
-  }
