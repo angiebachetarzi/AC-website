@@ -6,18 +6,16 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div className="header">
-       <p id="login">Logged in as </p>
-       <p id="logoff"><a href="#log">Log off</a></p>
+      <div className="container-fluid">
        <h1>The Islander's Guide</h1>
-       <div className="nav">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#critters">Critters</a></li>
-            <li><a href="#turnip">Turnip</a></li>
-            <li><a href="#designs">Designs</a></li>
-        </ul>
-       </div>
+       <nav className="navbar-expand-lg justify-content-center">
+        <button className="btn navbar-nav-link">Home</button>
+        <button className="btn navbar-nav-link">Designs</button>
+        <button className="btn navbar-nav-link" >Critters</button>
+        <button className="btn navbar-nav-link">Turnip</button>
+        <button className="btn navbar-nav-link" id="logoff">Log off</button>
+      </nav>
+       
       </div>
     );
   }
