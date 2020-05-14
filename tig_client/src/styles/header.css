@@ -1,0 +1,56 @@
+h1 {
+    font-family: 'FinkHeavy';
+    text-align: left;
+    margin-left: 2%;
+    font-weight:bold;
+    font-size: 40px;
+}
+
+.nav {
+    display: inline-block;
+}
+
+ul {
+    list-style-type: none;
+    margin:0 auto;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  li {
+    float: left;
+    background-color: #827157;
+    margin-left: 50px;
+    border-radius: 50px;
+    width: 200px;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: x-large;
+    padding: 14px 16px;
+  }
+  
+  li:hover {
+    filter: drop-shadow(0 0 0.20rem black);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  #login, #logoff {
+    position: absolute;
+    top:0;
+    font-size: large;
+  }
+  #login {  
+    right:15%;
+    text-decoration: underline;
+  }
+
+  #logoff {
+    right:2%;
+  }
