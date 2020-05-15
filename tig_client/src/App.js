@@ -1,5 +1,9 @@
 import React from 'react';
-import Header from './components/header.js';
+import { Route, Switch } from "react-router-dom";
+import { Home } from "./components/home.js";
+import { Login } from "./components/login.js";
+import { Signup } from "./components/signup.js";
+import { PrivateRoute } from "./components/privateRoute.js";
 import './styles/App.css';
 
 
@@ -9,21 +13,17 @@ class App extends React.Component {
     this.state = {testResponse: ''}
   }
 
-  callServerTest() {
-    fetch('http://localhost:9000/test')
-    .then(res => {return res.text()})
-    .then(res => {this.setState({testResponse : res})})
-  }
-
   componentDidMount() {
-    //this.callServerTest()
+   
   }
 
   render() {
     return (
-      <div>
-        <Header />
-      </div>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <PrivateRoute path="/home" component={Home} />
+      </Switch>
        
     );
   }
