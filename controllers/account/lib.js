@@ -2,7 +2,7 @@ const User = require("../../schema/schemaUser.js");
 const passwordHash = require("password-hash");
 
 async function signup(req, res) {
-  const { password, email, username, islandCode } = req.body;
+  const { password, email, username, isAdmin, islandCode } = req.body;
   if (!email || !password || !username || !islandCode) {
     //Le cas où l'email ou bien le password ne serait pas soumit ou nul
     return res.status(400).json({
