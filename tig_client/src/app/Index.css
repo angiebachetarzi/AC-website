@@ -1,0 +1,15 @@
+h1 {
+    font-family: "FinkHeavy";
+    margin: 2%;
+    font-size: 3vw;
+}
+
+.clear-body {
+    position: fixed;
+    top: 2%;
+    left: 2%;
+    bottom: 1%;
+    right: 2%;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.404);
+}

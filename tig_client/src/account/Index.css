@@ -1,0 +1,15 @@
+.login-form > .container {
+    float: left;
+    margin-top: 5%;
+}
+.login-form > .card {
+    background-color: rgba(255, 255, 255, 0.747);
+}
+.login-form > .btn[type="submit"] {
+    background-color: rgb(250, 174, 187);
+    border-color: rgb(250, 174, 187);
+}
+
+.login-form > .btn-link, .login-form > .btn-link:hover {
+    color:rgb(250, 174, 187);
+}

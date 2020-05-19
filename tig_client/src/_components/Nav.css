@@ -1,0 +1,15 @@
+.btn-default {
+    background-color: rgba(159, 107, 86, 1);
+    border-radius: 30px;
+    width: 75%;
+    color:rgba(255, 255, 255, 0.548);
+    font-size: calc(0.8vw + 0.8vh);
+}
+
+.navbar {
+    margin-left: 20%;
+}
+
+.btn-default:hover, .nav-item:active {
+    color:white;
+}

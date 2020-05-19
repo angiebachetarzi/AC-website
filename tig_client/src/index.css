@@ -1,29 +1,50 @@
-@font-face {
-  font-family: 'FinkHeavy';
-  src: url('./fonts/FinkHeavy.eot');
-  src: url('./fonts/FinkHeavy.eot?#iefix') format('embedded-opentype'),
-      url('./fonts/FinkHeavy.woff2') format('woff2'),
-      url('./fonts/FinkHeavy.woff') format('woff'),
-      url('./fonts/FinkHeavy.ttf') format('truetype'),
-      url('./fonts/FinkHeavy.svg#FinkHeavy') format('svg');
-  font-weight: normal;
-  font-style: normal;
+a { cursor: pointer; }
+
+.app-container {
+    min-height: 320px;
 }
 
-@font-face {
-  font-family: 'Allan';
-  src: url('./fonts/Allan-Regular.eot');
-  src: url('./fonts/Allan-Regular.eot?#iefix') format('embedded-opentype'),
-      url('./fonts/Allan-Regular.woff2') format('woff2'),
-      url('./fonts/Allan-Regular.woff') format('woff'),
-      url('./fonts/Allan-Regular.ttf') format('truetype'),
-      url('./fonts/Allan-Regular.svg#Allan-Regular') format('svg');
-  font-weight: normal;
-  font-style: normal;
+.admin-nav {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: #e8e9ea;
+    border-bottom: 1px solid #ccc;
 }
 
 body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background-image: url("./pictures/bg_login.jpg");
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+@font-face {
+    font-family: 'FinkHeavy';
+    src: url('./fonts/FinkHeavy.eot');
+    src: url('./fonts/FinkHeavy.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/FinkHeavy.woff2') format('woff2'),
+        url('./fonts/FinkHeavy.woff') format('woff'),
+        url('./fonts/FinkHeavy.ttf') format('truetype'),
+        url('./fonts/FinkHeavy.svg#FinkHeavy') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Allan';
+    src: url('./fonts/Allan-Regular.eot');
+    src: url('./fonts/Allan-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Allan-Regular.woff2') format('woff2'),
+        url('./fonts/Allan-Regular.woff') format('woff'),
+        url('./fonts/Allan-Regular.ttf') format('truetype'),
+        url('./fonts/Allan-Regular.svg#Allan-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    font-family: "Allan"
 }
