@@ -1,0 +1,13 @@
+{
+    "secret" : "yLT8HMvjSUS-nJ-VBda7BAfUuCrH9gp0eOGcrcoFBWEQBQJkgcA9x0-y_cJ3znDBFwgdE6yKPgZ0KlS112B1pKbg2WYA9TuoqkeXspO1wulN3w",
+    "connectionString": "mongodb://localhost/db",
+    "emailFrom": "info@the-islanders-guide.com",
+    "smtpOptions": {
+        "host": "smtp.ethereal.email",
+        "port": 587,
+        "auth": {
+            "user": "dana.quigley@ethereal.email",
+            "pass": "5B5pPsgDRpgyPyR4Hu"
+        }
+    }
+}
