@@ -1,0 +1,29 @@
+h1 {
+    font-family: "FinkHeavy";
+    margin: 2%;
+    font-size: 3vw;
+}
+
+.clear-body {
+    position: fixed;
+    top: 10%;
+    left: 2%;
+    bottom: 1%;
+    right: 2%;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.404);
+}
+
+.clear-body > .btn, .btn-primary, .btn-danger {
+    opacity: 0.7;
+    font-size: large;
+}
+
+.clear-body > .table {
+    background-color: rgba(255, 255, 255, 0.795);
+    width: 75%;
+}
+
+.clear-body > * {
+    margin: 2%;
+}

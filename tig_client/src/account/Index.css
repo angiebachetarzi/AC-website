@@ -1,0 +1,15 @@
+.container {
+    float: left;
+    margin-top: 5%;
+}
+.card {
+    background-color: rgba(255, 255, 255, 0.747);
+}
+.btn[type="submit"] {
+    background-color: rgb(252, 117, 139);
+    border-color: rgb(252, 117, 139);
+}
+
+.btn-link, .btn-link:hover {
+    color:rgb(252, 117, 139);
+}
