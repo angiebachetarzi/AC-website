@@ -55,7 +55,7 @@ function Update({ history }) {
     }
 
     return (
-        <div className="profile">
+        <div className="profile clear-body">
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
             {({ errors, touched, isSubmitting }) => (
                 <Form>

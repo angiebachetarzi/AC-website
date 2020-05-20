@@ -74,14 +74,14 @@ function AddEdit({ history, match }) {
     }
 
     return (
-        <div className = "users">
+        <div className = "users clear-body">
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
             {({ errors, touched, isSubmitting, setFieldValue }) => {
                 useEffect(() => {
                     if (!isAddMode) {
                         // get user and set form fields
                         accountService.getById(id).then(user => {
-                            const fields = ['title', 'firstName', 'lastName', 'email', 'role'];
+                            const fields = ['email', 'username', 'islandCode', 'role'];
                             fields.forEach(field => setFieldValue(field, user[field], false));
                         });
                     }

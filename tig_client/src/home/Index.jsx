@@ -8,7 +8,7 @@ function Home() {
     const user = accountService.userValue;
     
     return (
-        <div className="home">
+        <div className="home clear-body">
             <div className="container">
                 <h2>Hi {user.username}!</h2>
                 <p>You're logged in!!</p>

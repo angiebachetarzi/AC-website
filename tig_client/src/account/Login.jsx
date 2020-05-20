@@ -32,7 +32,7 @@ function Login({ history, location }) {
     }
 
     return (
-        <div className = "login-form">
+        <div>
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
             {({ errors, touched, isSubmitting }) => (
                 <Form>

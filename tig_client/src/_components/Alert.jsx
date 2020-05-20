@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { alertService, AlertType } from '@/_services';
 import { history } from '@/_helpers';
 
+import './Alert.css';
+
 const propTypes = {
     id: PropTypes.string,
     fade: PropTypes.bool
@@ -98,14 +100,16 @@ function Alert({ id, fade }) {
     if (!alerts.length) return null;
 
     return (
-        <div className="container">
-            <div className="m-3">
-                {alerts.map((alert, index) =>
-                    <div key={index} className={cssClasses(alert)}>
-                        <a className="close" onClick={() => removeAlert(alert)}>&times;</a>
-                        <span dangerouslySetInnerHTML={{__html: alert.message}}></span>
-                    </div>
-                )}
+        <div className="alert-fixed">
+            <div className="container">
+                <div className="m-3">
+                    {alerts.map((alert, index) =>
+                        <div key={index} className={cssClasses(alert)}>
+                            <a className="close" onClick={() => removeAlert(alert)}>&times;</a>
+                            <span dangerouslySetInnerHTML={{__html: alert.message}}></span>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

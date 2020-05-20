@@ -24,7 +24,7 @@ function List({ match }) {
     }
 
     return (
-        <div className = "users">
+        <div className = "users clear-body">
             <h2>Managing Users</h2>
             <Link to={`${path}/add`} className="btn btn-sm btn-success mb-2">Add User</Link>
             <table className="table">

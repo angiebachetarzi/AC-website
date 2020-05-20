@@ -21,7 +21,7 @@ function App() {
     }, []);
 
     return (
-        <div className="clear-body">
+        <div>
             <h1>The Islander's Guide</h1>
             <Nav />
             <Alert />
