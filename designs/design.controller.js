@@ -8,10 +8,10 @@ const designService = require('./design.service');
 // routes
 router.get('/', getAllDesigns);
 router.get('/:design_id', getDesign);
-router.get('/getUserDesigns/:creator_id', getUserDesigns);
+router.get('/getUserDesigns', authorize(), getUserDesigns);
 router.post('/', authorize(), uploadDesignSchema, uploadDesign);
-router.put('/:creator_id/:design_ID', authorize(), updateDesignSchema, updateDesign);
-router.delete('/:creator_id/:design_ID', authorize(), _delete);
+router.put('/:user_id/:design_ID', authorize(), updateDesignSchema, updateDesign);
+router.delete('/:user_id/:design_ID', authorize(), _delete);
 
 module.exports = router;
 
@@ -28,7 +28,7 @@ function getDesign(req, res, next) {
 }
 
 function getUserDesigns(req, res, next) {
-    designService.getUserDesigns(req.params.creator_id)
+    designService.getUserDesigns(req.user.id)
         .then(designs => res.json(designs))
         .catch(err => next(err));
 }
@@ -36,7 +36,6 @@ function getUserDesigns(req, res, next) {
 function uploadDesignSchema(req, res, next) {
     const schema = Joi.object({
         designName: Joi.string().required(),
-        creatorID: Joi.string().valid(req.user.creatorID).default(req.user.creatorID),
         designID: Joi.string().pattern(new RegExp('^MO-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$')).required(),
         designType: Joi.string().valid('clothes', 'other').required(),
         designImage: Joi.string().required()
@@ -45,7 +44,9 @@ function uploadDesignSchema(req, res, next) {
 }
 
 function uploadDesign(req, res, next) {
-    designService.uploadDesign(req.body)
+    params = req.body;
+    params['userID'] = req.user.id;
+    designService.uploadDesign(params)
         .then(design => res.json(design))
         .catch(err => next(err));
 }
@@ -53,7 +54,7 @@ function uploadDesign(req, res, next) {
 function updateDesignSchema(req, res, next) {
     const schemaRules = {
         designName: Joi.string().empty(''),
-        creatorID: Joi.string().empty(''),
+        //creatorID: Joi.string().empty(''),
         designID: Joi.string().empty(''),
         designType: Joi.string().empty(''),
         designImage: Joi.string().empty('')
@@ -66,7 +67,7 @@ function updateDesignSchema(req, res, next) {
 function updateDesign(req, res, next) {
 
     // users can update only their own designs
-    if (req.params.creator_id !== req.user.creatorID) {
+    if (req.params.user_id !== req.user.id) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
 
@@ -77,7 +78,7 @@ function updateDesign(req, res, next) {
 
 function _delete(req, res, next) {
     // users can delete only their own design
-    if (req.params.creator_id !== req.user.creatorID) {
+    if (req.params.user_id !== req.user.user) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
 

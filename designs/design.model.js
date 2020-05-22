@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
     designName: { type: String, required: true},
-    creatorID: { type: String, required: true, ref: 'Account.creatorID'},
+    userID: {type: Schema.Types.ObjectId, ref: 'Account'},
+    //creatorID: { type: String, required: true, ref: 'Account.creatorID'},
     designID: { type: String, unique: true, required: true},
     designType: { type: String, required: true},
     designImage: { type: String, unique: true, required: true},

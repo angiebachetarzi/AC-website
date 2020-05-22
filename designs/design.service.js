@@ -30,8 +30,8 @@ async function getDesign(design_id) {
     return basicDetails(design);
 }
 
-async function getUserDesigns(creator_id) {
-    const designs = await Design.find({ 'creatorID': creator_id });
+async function getUserDesigns(user_id) {
+    const designs = await Design.find({ 'userID': user_id }).populate('userID');
     return designs.map(x => basicDetails(x));
 }
 
@@ -54,12 +54,12 @@ async function deleteDesign(design_id) {
 // helper functions
 
 async function getDesign(design_id) {
-    const design = await Design.findOne({ 'designID': design_id });
+    const design = await Design.findOne({ 'designID': design_id }).populate('userID');
     if (!design) throw 'Design not found';
     return design;
 }
 
 function basicDetails(design) {
-    const { designName, uploadedBy, creatorID, designID, designType, designImage, dateCreated, dateUpdated } = design;
-    return { designName, uploadedBy, creatorID, designID, designType, designImage, dateCreated, dateUpdated };
+    const { designName, userID, designID, designType, designImage, dateCreated, dateUpdated } = design;
+    return { designName, userID, designID, designType, designImage, dateCreated, dateUpdated };
 }

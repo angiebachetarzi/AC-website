@@ -9,8 +9,8 @@ mongoose.connect(config.connectionString, connectionOptions)
 mongoose.Promise = global.Promise;
 
 module.exports = {
-    Design: require('../designs/design.model'),
     Account: require('../accounts/account.model'),
+    Design: require('../designs/design.model'),
     isValidId
     
 };
