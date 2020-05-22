@@ -30,18 +30,20 @@ function List({ match }) {
             <table className="table">
                 <thead>
                     <tr>
-                        <th style={{ width: '30%' }}>Username</th>
+                        <th style={{ width: '30%' }}>Creator ID</th>
                         <th style={{ width: '30%' }}>Email</th>
                         <th style={{ width: '30%' }}>Role</th>
+                        <th style={{ width: '30%' }}>Friend code</th>
                         <th style={{ width: '10%' }}></th>
                     </tr>
                 </thead>
                 <tbody>
                     {users && users.map(user =>
                         <tr key={user.id}>
-                            <td>{user.username}</td>
+                            <td>{user.creatorID}</td>
                             <td>{user.email}</td>
                             <td>{user.role}</td>
+                            <td>{user.friendCode}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
                                 <Link to={`${path}/edit/${user.id}`} className="btn btn-sm btn-primary mr-1">Edit</Link>
                                 <button onClick={() => deleteUser(user.id)} className="btn btn-sm btn-danger" style={{ width: '60px' }} disabled={user.isDeleting}>

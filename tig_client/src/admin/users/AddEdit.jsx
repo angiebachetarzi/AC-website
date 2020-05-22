@@ -13,19 +13,20 @@ function AddEdit({ history, match }) {
     
     const initialValues = {
         email: '',
-        username: '',
+        creatorID: '',
         role: '',
         password: '',
         confirmPassword: '',
-        islandCode: ''
+        friendCode: ''
     };
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
             .email('Email is invalid')
             .required('Email is required'),
-        username: Yup.string()
-            .required('Username is required'),
+        creatorID: Yup.string()
+            .required('Creator ID is required')
+            .matches('^MA-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$'),
         role: Yup.string()
             .required('Role is required'),
         password: Yup.string()
@@ -36,8 +37,9 @@ function AddEdit({ history, match }) {
                 if (password) return schema.required('Confirm Password is required');
             })
             .oneOf([Yup.ref('password')], 'Passwords must match'),
-        islandCode: Yup.string()
-            .required('Island code is required'),
+        friendCode: Yup.string()
+            .required('Friend code is required')
+            .matches('^SM-[0-9]{4}-[0-9]{4}-[0-9]{4}$'),
     });
 
     function onSubmit(fields, { setStatus, setSubmitting }) {
@@ -81,7 +83,7 @@ function AddEdit({ history, match }) {
                     if (!isAddMode) {
                         // get user and set form fields
                         accountService.getById(id).then(user => {
-                            const fields = ['email', 'username', 'islandCode', 'role'];
+                            const fields = ['email', 'creatorID', 'friendCode', 'role'];
                             fields.forEach(field => setFieldValue(field, user[field], false));
                         });
                     }
@@ -106,14 +108,14 @@ function AddEdit({ history, match }) {
                                 <ErrorMessage name="role" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group col-7">
-                                <label>Username</label>
-                                <Field name="username" type="text" className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')} />
-                                <ErrorMessage name="username" component="div" className="invalid-feedback" />
+                                <label>Creator ID</label>
+                                <Field name="creatorID" type="text" className={'form-control' + (errors.creatorID && touched.creatorID ? ' is-invalid' : '')} />
+                                <ErrorMessage name="creatorID" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group col-7">
-                                <label>Island code</label>
-                                <Field name="islandCode" type="text" className={'form-control' + (errors.islandCode && touched.islandCode ? ' is-invalid' : '')} />
-                                <ErrorMessage name="islandCode" component="div" className="invalid-feedback" />
+                                <label>Friend code</label>
+                                <Field name="friendCode" type="text" className={'form-control' + (errors.friendCode && touched.friendCode ? ' is-invalid' : '')} />
+                                <ErrorMessage name="friendCode" component="div" className="invalid-feedback" />
                             </div>
                         </div>
                         <div className="form-row">

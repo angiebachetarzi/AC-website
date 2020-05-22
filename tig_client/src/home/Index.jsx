@@ -10,7 +10,7 @@ function Home() {
     return (
         <div className="home clear-body">
             <div className="container">
-                <h2>Hi {user.username}!</h2>
+                <h2>Hi bitch!</h2>
                 <p>You're logged in!!</p>
             </div>
         </div>

@@ -9,8 +9,8 @@ function Update({ history }) {
     const user = accountService.userValue;
     const initialValues = {
         email: user.email,
-        username: user.username,
-        islandCode: user.islandCode,
+        creatorID: user.creatorID,
+        friendCode: user.friendCode,
         password: '',
         confirmPassword: ''
     };
@@ -19,10 +19,12 @@ function Update({ history }) {
         email: Yup.string()
             .email('Email is invalid')
             .required('Email is required'),
-        username:Yup.string()
-            .required('Username is required'),
-        islandCode:Yup.string()
-            .required('Island code is required'),
+        creatorID: Yup.string()
+            .required('Creator ID is required')
+            .matches('^MA-[0-9]{4}-[0-9]{4}-[0-9]{4}$'),
+        friendCode: Yup.string()
+            .required('Friend code is required')
+            .matches('^SW-[0-9]{4}-[0-9]{4}-[0-9]{4}$'),
         password: Yup.string()
             .min(6, 'Password must be at least 6 characters'),
         confirmPassword: Yup.string()
@@ -66,14 +68,14 @@ function Update({ history }) {
                         <ErrorMessage name="email" component="div" className="invalid-feedback" />
                     </div>
                     <div className="form-group">
-                        <label>Username</label>
-                        <Field name="username" type="text" className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')} />
-                        <ErrorMessage name="username" component="div" className="invalid-feedback" />
+                        <label>Creator ID</label>
+                        <Field name="creatorID" type="text" className={'form-control' + (errors.creatorID && touched.creatorID ? ' is-invalid' : '')} />
+                        <ErrorMessage name="creatorID" component="div" className="invalid-feedback" />
                     </div>
                     <div className="form-group">
-                        <label>Island code</label>
-                        <Field name="islandCode" type="text" className={'form-control' + (errors.islandCode && touched.islandCode ? ' is-invalid' : '')} />
-                        <ErrorMessage name="islandCode" component="div" className="invalid-feedback" />
+                        <label>Friend code</label>
+                        <Field name="friendCode" type="text" className={'form-control' + (errors.friendCode && touched.friendCode ? ' is-invalid' : '')} />
+                        <ErrorMessage name="friendCode" component="div" className="invalid-feedback" />
                     </div>
                     <div className="form-row">
                         <div className="form-group col">
