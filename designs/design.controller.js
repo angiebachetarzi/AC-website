@@ -7,8 +7,8 @@ const designService = require('./design.service');
 
 // routes
 router.get('/', getAllDesigns);
-router.get('/:design_id', getDesign);
 router.get('/getUserDesigns', authorize(), getUserDesigns);
+router.get('/:design_id', getDesign);
 router.post('/', authorize(), uploadDesignSchema, uploadDesign);
 router.put('/:user_id/:design_ID', authorize(), updateDesignSchema, updateDesign);
 router.delete('/:user_id/:design_ID', authorize(), _delete);
@@ -37,7 +37,7 @@ function uploadDesignSchema(req, res, next) {
     const schema = Joi.object({
         designName: Joi.string().required(),
         designID: Joi.string().pattern(new RegExp('^MO-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$')).required(),
-        designType: Joi.string().valid('clothes', 'other').required(),
+        designType: Joi.string().valid('top', 'dress', 'headwear', 'other').required(),
         designImage: Joi.string().required()
     });
     validateRequest(req, next, schema);
@@ -54,7 +54,6 @@ function uploadDesign(req, res, next) {
 function updateDesignSchema(req, res, next) {
     const schemaRules = {
         designName: Joi.string().empty(''),
-        //creatorID: Joi.string().empty(''),
         designID: Joi.string().empty(''),
         designType: Joi.string().empty(''),
         designImage: Joi.string().empty('')

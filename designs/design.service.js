@@ -26,17 +26,17 @@ async function getAllDesigns() {
 }
 
 async function getDesign(design_id) {
-    const design = await getDesign(design_id);
+    const design = await _getDesign(design_id);
     return basicDetails(design);
 }
 
 async function getUserDesigns(user_id) {
-    const designs = await Design.find({ 'userID': user_id }).populate('userID');
+    const designs = await Design.find({ 'userID': user_id });
     return designs.map(x => basicDetails(x));
 }
 
 async function updateDesign(design_id, params) {
-    const design = await getDesign(design_id);
+    const design = await _getDesign(design_id);
 
     // copy params to design and save
     Object.assign(design, params);
@@ -47,13 +47,13 @@ async function updateDesign(design_id, params) {
 }
 
 async function deleteDesign(design_id) {
-    const design = await getDesign(design_id);
+    const design = await _getDesign(design_id);
     await design.remove();
 }
 
 // helper functions
 
-async function getDesign(design_id) {
+async function _getDesign(design_id) {
     const design = await Design.findOne({ 'designID': design_id }).populate('userID');
     if (!design) throw 'Design not found';
     return design;

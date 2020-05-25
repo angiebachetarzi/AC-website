@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import { accountService, alertService } from '@/_services';
 
-import './AddEdit.css';
+import './Index.css';
 
 function AddEdit({ history, match }) {
     const { id } = match.params;
@@ -26,7 +26,7 @@ function AddEdit({ history, match }) {
             .required('Email is required'),
         creatorID: Yup.string()
             .required('Creator ID is required')
-            .matches('^MA-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$'),
+            .matches('^MA-[0-9]{4}-[0-9]{4}-[0-9]{4}$'),
         role: Yup.string()
             .required('Role is required'),
         password: Yup.string()
