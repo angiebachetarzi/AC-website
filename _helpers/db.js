@@ -10,7 +10,9 @@ mongoose.Promise = global.Promise;
 
 module.exports = {
     Account: require('../accounts/account.model'),
+    Design: require('../designs/design.model'),
     isValidId
+    
 };
 
 function isValidId(id) {

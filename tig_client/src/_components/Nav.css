@@ -1,15 +1,10 @@
-.btn-default {
-    background-color: rgba(159, 107, 86, 1);
-    border-radius: 30px;
+nav {
     width: 75%;
-    color:rgba(255, 255, 255, 0.548);
-    font-size: calc(0.8vw + 0.8vh);
+    border-radius: 30px;
+    margin-left: 10%;
+    background-color: rgba(205,47,121, 0.3);
 }
-
-.navbar {
-    margin-left: 20%;
-}
-
-.btn-default:hover, .nav-item:active {
-    color:white;
+.navbar-nav { 
+    width: 100%;
+    text-align: center;
 }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { accountService } from '@/_services';
 
-import './List.css';
+import './Index.css';
 
 function List({ match }) {
     const { path } = match;
@@ -24,44 +24,48 @@ function List({ match }) {
     }
 
     return (
-        <div className = "users clear-body">
+        <div className = "users">
             <h2>Managing Users</h2>
             <Link to={`${path}/add`} className="btn btn-sm btn-success mb-2">Add User</Link>
-            <table className="table">
+            <div className="table-responsive">
+                <table className="table table-hover">
                 <thead>
-                    <tr>
-                        <th style={{ width: '30%' }}>Username</th>
-                        <th style={{ width: '30%' }}>Email</th>
-                        <th style={{ width: '30%' }}>Role</th>
-                        <th style={{ width: '10%' }}></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users && users.map(user =>
-                        <tr key={user.id}>
-                            <td>{user.username}</td>
-                            <td>{user.email}</td>
-                            <td>{user.role}</td>
-                            <td style={{ whiteSpace: 'nowrap' }}>
-                                <Link to={`${path}/edit/${user.id}`} className="btn btn-sm btn-primary mr-1">Edit</Link>
-                                <button onClick={() => deleteUser(user.id)} className="btn btn-sm btn-danger" style={{ width: '60px' }} disabled={user.isDeleting}>
-                                    {user.isDeleting 
-                                        ? <span className="spinner-border spinner-border-sm"></span>
-                                        : <span>Delete</span>
-                                    }
-                                </button>
-                            </td>
-                        </tr>
-                    )}
-                    {!users &&
                         <tr>
-                            <td colSpan="4" className="text-center">
-                                <span className="spinner-border spinner-border-lg align-center"></span>
-                            </td>
+                            <th>Creator ID</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Friend code</th>
+                            <th></th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {users && users.map(user =>
+                            <tr key={user.id}>
+                                <td>{user.creatorID}</td>
+                                <td>{user.email}</td>
+                                <td>{user.role}</td>
+                                <td>{user.friendCode}</td>
+                                <td>
+                                    <Link to={`${path}/edit/${user.id}`} className="btn btn-sm btn-primary">Edit</Link>
+                                    <button onClick={() => deleteUser(user.id)} className="btn btn-sm btn-danger" disabled={user.isDeleting}>
+                                        {user.isDeleting 
+                                            ? <span className="spinner-border spinner-border-sm"></span>
+                                            : <span>Delete</span>
+                                        }
+                                    </button>
+                                </td>
+                            </tr>
+                        )}
+                        {!users &&
+                            <tr>
+                                <td colSpan="4" className="text-center">
+                                    <span className="spinner-border spinner-border-lg align-center"></span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

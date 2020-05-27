@@ -4,10 +4,10 @@ import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import { Role } from '@/_helpers';
 import { accountService } from '@/_services';
 import { Nav, PrivateRoute, Alert } from '@/_components';
-import { Home } from '@/home';
 import { Profile } from '@/profile';
 import { Admin } from '@/admin';
 import { Account } from '@/account';
+import { Designs } from '@/designs';
 
 import './Index.css'
 
@@ -21,14 +21,14 @@ function App() {
     }, []);
 
     return (
-        <div>
-            <h1>The Islander's Guide</h1>
+        <div className="app">
+            <p className="h1">The Islander's Guide</p>
             <Nav />
             <Alert />
             <Switch>
                 <Redirect from="/:url*(/+)" to={pathname.slice(0, -1)} />
-                <PrivateRoute exact path="/" component={Home} />
-                <PrivateRoute path="/profile" component={Profile} />
+                <PrivateRoute exact path="/" component={Profile} />
+                <PrivateRoute path="/designs" component={Designs} />
                 <PrivateRoute path="/admin" roles={[Role.Admin]} component={Admin} />
                 <Route path="/account" component={Account} />
                 <Redirect from="*" to="/" />

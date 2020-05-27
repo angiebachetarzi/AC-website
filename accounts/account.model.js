@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
     email: { type: String, unique: true, required: true },
     passwordHash: { type: String, required: true },
-    username: { type: String, required: true },
-    islandCode: { type: String, required: true},
+    creatorID: { type: String, required: true },
+    friendCode: { type: String, required: true},
     role: { type: String, required: true },
     verificationToken: { type: String },
     isVerified: { type: Boolean, default: false },
