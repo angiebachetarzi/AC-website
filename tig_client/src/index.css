@@ -1,24 +1,14 @@
 a { cursor: pointer; }
 
-.app-container {
-    min-height: 320px;
-}
-
-.admin-nav {
-    padding-top: 0;
-    padding-bottom: 0;
-    background-color: #e8e9ea;
-    border-bottom: 1px solid #ccc;
-}
-
 body {
-    background-image: url("./pictures/bg_login.jpg");
+    background-image: url("./images/bg_login.jpg");
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     background-attachment: fixed;
+    overflow: auto;
 }
 
 @font-face {
@@ -46,5 +36,5 @@ body {
 }
 
 *{
-    font-family: "Allan"
+    font-family: "Allan";
 }

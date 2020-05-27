@@ -52,6 +52,8 @@ function Login({ history, location }) {
                                     {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
                                     Login
                                 </button>
+                            </div>
+                            <div className="form-group col text-right">
                                 <Link to="register" className="btn btn-link">New here? Register!</Link>
                             </div>
                             <div className="form-group col text-right">

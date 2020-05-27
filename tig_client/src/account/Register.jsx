@@ -8,26 +8,28 @@ import { accountService, alertService } from '@/_services';
 function Register({ history }) {
     const initialValues = {
         email: '',
-        username:'',
+        creatorID:'',
         password: '',
         confirmPassword: '',
-        islandCode: '',
+        friendCode: '',
     };
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
             .email('Email is invalid')
             .required('Email is required'),
-        username: Yup.string()
-            .required('Username is required'),
+        creatorID: Yup.string()
+            .required('Creator ID is required')
+            .matches('^MA-[0-9]{4}-[0-9]{4}-[0-9]{4}$'),
         password: Yup.string()
             .min(6, 'Password must be at least 6 characters')
             .required('Password is required'),
         confirmPassword: Yup.string()
             .oneOf([Yup.ref('password'), null], 'Passwords must match')
             .required('Confirm Password is required'),
-        islandCode: Yup.string()
-            .required('Island code is required'),
+        friendCode: Yup.string()
+            .required('Friend code is required')
+            .matches('^SW-[0-9]{4}-[0-9]{4}-[0-9]{4}$'),
     });
 
     function onSubmit(fields, { setStatus, setSubmitting }) {
@@ -54,8 +56,8 @@ function Register({ history }) {
                             <ErrorMessage name="email" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">
-                            <Field name="username" placeholder="Username" type="text" className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')} />
-                            <ErrorMessage name="username" component="div" className="invalid-feedback" />
+                            <Field name="creatorID" placeholder="Creator ID" type="text" className={'form-control' + (errors.creatorID && touched.creatorID ? ' is-invalid' : '')} />
+                            <ErrorMessage name="creatorID" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-row">
                             <div className="form-group col">
@@ -68,8 +70,8 @@ function Register({ history }) {
                             </div>
                         </div>
                         <div className="form-group">
-                            <Field name="islandCode" placeholder="Island code" type="text" className={'form-control' + (errors.islandCode && touched.islandCode ? ' is-invalid' : '')} />
-                            <ErrorMessage name="islandCode" component="div" className="invalid-feedback" />
+                            <Field name="friendCode" placeholder="Friend code" type="text" className={'form-control' + (errors.friendCode && touched.friendCode ? ' is-invalid' : '')} />
+                            <ErrorMessage name="friendCode" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">
                             <button type="submit" disabled={isSubmitting} className="btn btn-primary">

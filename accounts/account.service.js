@@ -181,8 +181,8 @@ function generateToken() {
 }
 
 function basicDetails(account) {
-    const { id, username, email, islandCode, role, dateCreated, dateUpdated } = account;
-    return { id, username, email, islandCode, role, dateCreated, dateUpdated };
+    const { id, creatorID, email, friendCode, role, dateCreated, dateUpdated } = account;
+    return { id, creatorID, email, friendCode, role, dateCreated, dateUpdated };
 }
 
 function sendVerificationEmail(account, origin) {

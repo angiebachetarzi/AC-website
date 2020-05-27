@@ -37,11 +37,11 @@ function authenticate(req, res, next) {
 
 function registerSchema(req, res, next) {
     const schema = Joi.object({
-        username: Joi.string().required(),
+        creatorID: Joi.string().pattern(new RegExp('^MA-[0-9]{4}-[0-9]{4}-[0-9]{4}$')).required(),
         email: Joi.string().email().required(),
         password: Joi.string().min(6).required(),
         confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
-        islandCode: Joi.string().required()
+        friendCode: Joi.string().pattern(new RegExp('^SW-[0-9]{4}-[0-9]{4}-[0-9]{4}$')).required()
     });
     validateRequest(req, next, schema);
 }
@@ -125,11 +125,11 @@ function getById(req, res, next) {
 
 function createSchema(req, res, next) {
     const schema = Joi.object({
-        username: Joi.string().required(),
+        creatorID: Joi.string().pattern(new RegExp('^MA-[0-9]{4}-[0-9]{4}-[0-9]{4}$')).required(),
         email: Joi.string().email().required(),
         password: Joi.string().min(6).required(),
         confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
-        islandCode: Joi.string().required(),
+        friendCode: Joi.string().pattern(new RegExp('^SW-[0-9]{4}-[0-9]{4}-[0-9]{4}$')).required(),
         role: Joi.string().valid(Role.Admin, Role.User).empty('').required()
     });
     validateRequest(req, next, schema);
@@ -143,9 +143,9 @@ function create(req, res, next) {
 
 function updateSchema(req, res, next) {
     const schemaRules = {
-        username: Joi.string().empty(''),
+        creatorID: Joi.string().pattern(new RegExp('^MA-[0-9]{4}-[0-9]{4}-[0-9]{4}$')).required(),
         email: Joi.string().email().empty(''),
-        islandCode: Joi.string().empty(''),
+        friendCode: Joi.string().pattern(new RegExp('^SW-[0-9]{4}-[0-9]{4}-[0-9]{4}$')).required(),
         password: Joi.string().min(6).empty(''),
         confirmPassword: Joi.string().valid(Joi.ref('password')).empty('')
     };

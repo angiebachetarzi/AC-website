@@ -18,20 +18,22 @@ function Nav() {
     if (!user) return null;
 
     return (
-        <div>
-            <nav className="navbar navbar-expand navbar-dark ">
+        <nav className="navbar nav-justified navbar-expand-lg navbar-dark">
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                    <NavLink exact to="/" className="nav-item nav-link col-md-6"><button className="btn btn-default active">Home</button></NavLink>
-                    <NavLink to="/profile" className="nav-item nav-link col-md-6"><button className="btn btn-default">Profile</button></NavLink>
-                    <NavLink to="/designs" className="nav-item nav-link col-md-6"><button className="btn btn-default">Designs</button></NavLink>
-                    {user.role === Role.Admin &&
-                        <NavLink to="/admin/users" className="nav-item nav-link col-md-6"><button className="btn btn-default">Users</button></NavLink>
-                    }
-                    <a onClick={accountService.logout} className="nav-item nav-link col-md-6"><button className="btn btn-default">Logout</button></a>
+                <NavLink className="nav-item nav-link active" to="/">Profile</NavLink>
+                <NavLink className="nav-item nav-link active" to="/designs">Designs</NavLink>
+                <NavLink className="nav-item nav-link active" to="/designs/upload">Upload</NavLink>
+                {user.role === Role.Admin &&
+                    <NavLink to="/admin/users" className="nav-item nav-link active">Users</NavLink>
+                }
+                <a className="nav-item nav-link" href= "#" onClick={accountService.logout}>Logout</a>
                 </div>
-            </nav>
-            
-        </div>
+            </div>
+        </nav>
     );
 }
 export { Nav }; 

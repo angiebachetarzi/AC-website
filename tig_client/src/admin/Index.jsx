@@ -7,8 +7,8 @@ function Admin({ match }) {
     const { path } = match;
 
     return (
-        <div >
-            <div className="container">
+        <div className="p-5">
+            <div className="container-full-bg">
                 <Switch>
                     <Route path={`${path}/users`} component={Users} />
                 </Switch>
