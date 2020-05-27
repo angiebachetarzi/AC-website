@@ -69,19 +69,18 @@ function updateDesign(req, res, next) {
     if (req.params.user_id !== req.user.id) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
-
-    designService.updateDesign(req.params.design_id, req.body)
+    designService.updateDesign(req.params.design_ID, req.body)
         .then(design => res.json(design))
         .catch(err => next(err));
 }
 
 function _delete(req, res, next) {
     // users can delete only their own design
-    if (req.params.user_id !== req.user.user) {
+    if (req.params.user_id !== req.user.id) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    designService.deleteDesign(req.params.design_id)
+    designService.deleteDesign(req.params.design_ID)
         .then(() => res.json({ message: 'Design deleted successfully' }))
         .catch(err => next(err));
 }

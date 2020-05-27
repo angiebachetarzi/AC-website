@@ -23,15 +23,6 @@ function uploadDesign(params) {
 
 function getAllDesigns() {
     return fetchWrapper.get(baseUrl)
-        /* .then(designs => {
-            // store designs in local storage to keep user logged in between page refreshes
-            localStorage.setItem('designs', JSON.stringify(designs));
-
-            // publish designs to subscribers
-            designsSubject.next(user);
-
-            return user;
-        }); */
 }
 
 function getDesign(design_id) {

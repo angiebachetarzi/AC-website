@@ -39,7 +39,7 @@ function AddEdit({ history, match }) {
             .oneOf([Yup.ref('password')], 'Passwords must match'),
         friendCode: Yup.string()
             .required('Friend code is required')
-            .matches('^SM-[0-9]{4}-[0-9]{4}-[0-9]{4}$'),
+            .matches('^SW-[0-9]{4}-[0-9]{4}-[0-9]{4}$'),
     });
 
     function onSubmit(fields, { setStatus, setSubmitting }) {
@@ -76,8 +76,8 @@ function AddEdit({ history, match }) {
     }
 
     return (
-        <div className = "users clear-body">
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+        <div className = "users">
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={console.log('submit')}>
             {({ errors, touched, isSubmitting, setFieldValue }) => {
                 useEffect(() => {
                     if (!isAddMode) {

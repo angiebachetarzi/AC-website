@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { accountService, designService } from '@/_services';
+import { Link } from 'react-router-dom';
+import {designService } from '@/_services';
 
-function List({ match }) {
-    const { path } = match;
+function List() {
     const [designs, setDesigns] = useState(null);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ function List({ match }) {
                 <div className="card-body">
                 <h5 className="card-title">{design.designName}</h5>
                 <p className="card-text">{design.designType}</p>
-                <a href="#" className="stretched-link"></a>
+                <Link to={`designs/details/${design.designID}`} className="stretched-link btn btn-sm btn-primary">More</Link>
                 </div>
             </div>
             )} 

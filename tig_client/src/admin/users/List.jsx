@@ -56,13 +56,13 @@ function List({ match }) {
                                 </td>
                             </tr>
                         )}
-                        {/* {!users &&
+                        {!users &&
                             <tr>
                                 <td colSpan="4" className="text-center">
                                     <span className="spinner-border spinner-border-lg align-center"></span>
                                 </td>
                             </tr>
-                        } */}
+                        }
                     </tbody>
                 </table>
             </div>
