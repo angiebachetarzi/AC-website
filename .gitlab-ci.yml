@@ -1,5 +1,15 @@
 image: node:latest
 
+services:
+  - mongo
+
+variables:
+  MONGO_DATABASE: db
+
+  Host: mongo
+  Database: db
+
+
 stages:
  - build
  - test
