@@ -15,7 +15,17 @@ install_dependencies:
    
 testing:
  stage: test
+ services:
+  - mongo:latest
+
+ variables:
+  MONGO_DATABASE: test
+
+  Host: cluster0-e8bno.gcp.mongodb.net
+  Database: test
+  
  script:
+  - chmod 0777 ./node_modules/.bin/mocha
   - npm run test
  artifacts:
   paths:

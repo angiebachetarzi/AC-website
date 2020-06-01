@@ -16,7 +16,7 @@ function Details() {
             <p><span className="lead">Email: </span><span>{user.email}</span></p>
             <p><span className="lead">Creator ID: </span><span>{user.creatorID}</span></p>
             <p><span className="lead">Friend code: </span><span>{user.friendCode}</span></p>
-            <p><a className="lead" href="#">Need to update your profile? Contact us at weloveyou@jk.com!</a></p>
+            <p><a className="lead" href="#">Need to update your profile? Contact us at info@the-islanders-guide.com!</a></p>
         </div>
         <div className="card-deck">
         {designs && designs.map(design =>
