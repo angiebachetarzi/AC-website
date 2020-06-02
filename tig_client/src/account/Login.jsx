@@ -43,7 +43,7 @@ function Login({ history, location }) {
                             <ErrorMessage name="email" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">
-                            <Field name="password" placeholder="Password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
+                            <Field name="password" placeholder="Password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} data-cy-form-password/>
                             <ErrorMessage name="password" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-row">

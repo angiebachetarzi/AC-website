@@ -52,25 +52,25 @@ function Register({ history }) {
                     <h3 className="card-header">Register</h3>
                     <div className="card-body">
                         <div className="form-group">
-                            <Field name="email" placeholder="Email" type="text" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} />
+                            <Field name="email" placeholder="Email" type="text" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} autoFocus data-cy-form-email/>
                             <ErrorMessage name="email" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">
-                            <Field name="creatorID" placeholder="Creator ID" type="text" className={'form-control' + (errors.creatorID && touched.creatorID ? ' is-invalid' : '')} />
+                            <Field name="creatorID" placeholder="Creator ID" type="text" className={'form-control' + (errors.creatorID && touched.creatorID ? ' is-invalid' : '')} data-cy-form-creatorID/>
                             <ErrorMessage name="creatorID" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-row">
                             <div className="form-group col">
-                                <Field name="password" placeholder="Password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
+                                <Field name="password" placeholder="Password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} data-cy-form-password/>
                                 <ErrorMessage name="password" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group col">
-                                <Field name="confirmPassword" placeholder="Confirm password" type="password" className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')} />
+                                <Field name="confirmPassword" placeholder="Confirm password" type="password" className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')} data-cy-form-confirmPassword/>
                                 <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback" />
                             </div>
                         </div>
                         <div className="form-group">
-                            <Field name="friendCode" placeholder="Friend code" type="text" className={'form-control' + (errors.friendCode && touched.friendCode ? ' is-invalid' : '')} />
+                            <Field name="friendCode" placeholder="Friend code" type="text" className={'form-control' + (errors.friendCode && touched.friendCode ? ' is-invalid' : '')} data-cy-form-friendCode/>
                             <ErrorMessage name="friendCode" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">
@@ -87,4 +87,4 @@ function Register({ history }) {
     )
 }
 
-export { Register }; 
+export { Register };
