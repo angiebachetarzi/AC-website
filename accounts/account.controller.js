@@ -143,9 +143,9 @@ function create(req, res, next) {
 
 function updateSchema(req, res, next) {
     const schemaRules = {
-        creatorID: Joi.string().pattern(new RegExp('^MA-[0-9]{4}-[0-9]{4}-[0-9]{4}$')).required(),
+        creatorID: Joi.string().pattern(new RegExp('^MA-[0-9]{4}-[0-9]{4}-[0-9]{4}$')),
         email: Joi.string().email().empty(''),
-        friendCode: Joi.string().pattern(new RegExp('^SW-[0-9]{4}-[0-9]{4}-[0-9]{4}$')).required(),
+        friendCode: Joi.string().pattern(new RegExp('^SW-[0-9]{4}-[0-9]{4}-[0-9]{4}$')),
         password: Joi.string().min(6).empty(''),
         confirmPassword: Joi.string().valid(Joi.ref('password')).empty('')
     };
