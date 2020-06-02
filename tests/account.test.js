@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const app = require ('../server');
 const db = require('_helpers/db')
 const Account = db.Account;
+const Design = db.Design;
 
 // Configure chai
 chai.use(chaiHttp);
@@ -15,13 +16,45 @@ describe("Acounts", () => {
    
     describe("POST /", () => {
 
+        beforeEach(() => {
+            const fakeAccount = new Account({
+                "email": "test@fake.com",
+                "password": "fakefake",
+                "confirmPassword": "fakefake",
+                "creatorID": "MA-1111-1111-1111",
+                "friendCode": "SW-1111-1111-1111",
+                "role": "User",
+                "passwordHash": bcrypt.hashSync("fakefake", 10),
+                "isVerified": true
+            })
+            fakeAccount.save();
+            const adminAccount = new Account({
+                "email": "admin@fake.com",
+                "password": "fakefake",
+                "confirmPassword": "fakefake",
+                "creatorID": "MA-1111-1111-1111",
+                "friendCode": "SW-1111-1111-1111",
+                "role": "Admin",
+                "passwordHash": bcrypt.hashSync("fakefake", 10),
+                "isVerified": true
+            })
+            adminAccount.save();
+        })
+
+        // delete all used accounts in testing after each test
         afterEach(async () => {
             const account = await Account.findOne( { 'email': 'fake@fake.com' } );
             if (account)
                 await account.remove();
-            const account1 = await Account.findOne( { 'email': 'test@test.com' } );
+            const account1 = await Account.findOne( { 'email': 'test@fake.com' } );
             if (account1)
                 await account1.remove();
+            const account2 = await Account.findOne( { 'email': 'test@test.com' } );
+            if (account2)
+                await account2.remove();
+            const account3 = await Account.findOne( { 'email': 'admin@fake.com' } );
+                if (account3)
+                    await account3.remove();
         })
 
         it("should create an account", (done) => {
@@ -169,22 +202,11 @@ describe("Acounts", () => {
         });
         
         it("should authenticate (correct email/password)", (done) => {
-            const fakeAccount = new Account({
-                "email": "fake@fake.com",
-                "password": "fakefake",
-                "confirmPassword": "fakefake",
-                "creatorID": "MA-1111-1111-1111",
-                "friendCode": "SW-1111-1111-1111",
-                "role": "User",
-                "passwordHash": bcrypt.hashSync("fakefake", 10),
-                "isVerified": true
-            })
-            fakeAccount.save();
             chai.request(app)
                 .post('/accounts/authenticate')
                 .set('content-type', 'application/json')
                 .send({
-                    "email": "fake@fake.com",
+                    "email": "test@fake.com",
                     "password": "fakefake"
                 })
                 .end(function(error, response, body) {
@@ -201,7 +223,7 @@ describe("Acounts", () => {
                         response.body.should.have.property('role');
                         response.body.should.have.property('dateCreated');
                         response.body.should.have.property('token');
-                        response.body.email.should.equal('fake@fake.com');
+                        response.body.email.should.equal('test@fake.com');
                         response.body.creatorID.should.equal('MA-1111-1111-1111');
                         response.body.friendCode.should.equal('SW-1111-1111-1111');
                         response.body.role.should.equal('User');
@@ -216,7 +238,7 @@ describe("Acounts", () => {
                 .post('/accounts/authenticate')
                 .set('content-type', 'application/json')
                 .send({
-                    "email": "fake@fake.com",
+                    "email": "test@fake.com",
                     "password": "test1"
                 })
                 .end(function(error, response, body) {
@@ -236,7 +258,7 @@ describe("Acounts", () => {
                 .post('/accounts/authenticate')
                 .set('content-type', 'application/json')
                 .send({
-                    "email": "test@fake.com",
+                    "email": "teest@fake.com",
                     "password": "fakefake"
                 })
                 .end(function(error, response, body) {
@@ -328,22 +350,11 @@ describe("Acounts", () => {
         });
 
         it("should work (forgot password with valid email)", (done) => {
-            const fakeAccount = new Account({
-                "email": "fake@fake.com",
-                "password": "fakefake",
-                "confirmPassword": "fakefake",
-                "creatorID": "MA-1111-1111-1111",
-                "friendCode": "SW-1111-1111-1111",
-                "role": "User",
-                "passwordHash": bcrypt.hashSync("fakefake", 10),
-                "isVerified": true
-            })
-            fakeAccount.save();
             chai.request(app)
                 .post('/accounts/forgot-password')
                 .set('content-type', 'application/json')
                 .send({
-                    "email": "fake@fake.com"
+                    "email": "test@fake.com"
                 })
                 .end(function(error, response, body) {
                     if (error) {
@@ -366,22 +377,11 @@ describe("Acounts", () => {
                 "friendCode": "SW-0000-0000-0000",
                 "role": "User"
             }
-            const adminAccount = new Account({
-                "email": "fake@fake.com",
-                "password": "fakefake",
-                "confirmPassword": "fakefake",
-                "creatorID": "MA-1111-1111-1111",
-                "friendCode": "SW-1111-1111-1111",
-                "role": "Admin",
-                "passwordHash": bcrypt.hashSync("fakefake", 10),
-                "isVerified": true
-            })
-            adminAccount.save();
             chai.request(app)
                 .post('/accounts/authenticate')
                 .set('content-type', 'application/json')
                 .send({
-                    "email": "fake@fake.com",
+                    "email": "admin@fake.com",
                     "password": "fakefake"
                 })
                 .end(function(error, response, body) {
@@ -458,7 +458,7 @@ describe("Acounts", () => {
                                 } else {
                                     response.should.have.status(401);
                                     response.body.should.have.property('message');
-                                    response.body.message.should.equal('Unauthorized')
+                                    expect(response.body.message).to.be.oneOf(['Unauthorized', 'Invalid Token']);
                                     done();
                                 }
                             })
@@ -468,6 +468,8 @@ describe("Acounts", () => {
     })
 
     describe("PUT /", () => {
+
+        // create fake account before each test
         beforeEach(() => {
             const fakeAccount = new Account({
                 "email": "fake@fake.com",
@@ -482,6 +484,7 @@ describe("Acounts", () => {
             fakeAccount.save();
         })
 
+        // delete fake account after each test
         afterEach(async () => {
             const account = await Account.findOne({ 'email': 'fake@fake.com' });
             if (account)
@@ -569,6 +572,8 @@ describe("Acounts", () => {
     })
 
     describe("GET /", () => {
+
+        // create admin user and ordinary user before tests
         before(() => {
             const account1 = new Account({
                 "email": "fake@fake.com",
@@ -592,6 +597,16 @@ describe("Acounts", () => {
                 "isVerified": true
             })
             account2.save();
+        })
+
+        // delete both accounts after all tests are performed
+        after(async () => {
+            const account1 = await Account.findOne( { 'email': 'fake@fake.com' } );
+            if (account1)
+                await account1.remove();
+            const account2 = await Account.findOne( { 'email': 'test@test.com' } );
+            if (account2)
+                await account2.remove();
         })
 
         it("should get info of user logged in", (done) => {
@@ -756,5 +771,137 @@ describe("Acounts", () => {
                         }
                 });
         })
+    })
+
+    describe("DELETE /", () => {
+
+        // create an admin user and an ordinary user
+        before(async () => {
+            const account1 = new Account({
+                "email": "fake@fake.com",
+                "password": "fakefake",
+                "confirmPassword": "fakefake",
+                "creatorID": "MA-1111-1111-1111",
+                "friendCode": "SW-1111-1111-1111",
+                "role": "Admin",
+                "passwordHash": bcrypt.hashSync("fakefake", 10),
+                "isVerified": true
+            })
+            account1.save();
+            const account2 = new Account({
+                "email": "test@test.com",
+                "password": "testtest",
+                "confirmPassword": "testtest",
+                "creatorID": "MA-0000-0000-0000",
+                "friendCode": "SW-0000-0000-0000",
+                "role": "User",
+                "passwordHash": bcrypt.hashSync("testtest", 10),
+                "isVerified": true
+            })
+            account2.save();
+
+            //get ordinary user's id
+            const user = await Account.findOne( {'email': 'test@test.com'} );
+            if (user) {
+                const fakeDesign = new Design({
+                    "designName": "design",
+                    "designID": "MO-0000-0000-0000",
+                    "userID": user._id,
+                    "designType": "top",
+                    "designImage": "image"
+                });
+                fakeDesign.save();
+            }
+            
+          })
+
+        after(async () => {
+            const account1 = await Account.findOne( { 'email': 'fake@fake.com' } );
+            if (account1)
+                await account1.remove();
+            const account2 = await Account.findOne( { 'email': 'test@test.com' } );
+            if (account2)
+                await account2.remove();
+            const design = await Design.findOne( { "designID": "MO-0000-0000-0000" });
+            if (design)
+                await design.remove();
+        })
+
+        it("should delete user and all it's designs (as admin)", (done) => {
+            Account.findOne( {'email': 'test@test.com'} )
+            .then((user) => {
+                chai.request(app)
+                .post('/accounts/authenticate')
+                .set('content-type', 'application/json')
+                .send({
+                    "email": "fake@fake.com",
+                    "password": "fakefake"
+                })
+                .end(function(error, response, body) {
+                    if (error) {
+                        done(error);
+                    } else {
+                        const token = response.body.token;
+                        const user_id = user._id;
+                        chai.request(app)
+                            .delete('/accounts/' + user_id)
+                            .set({'Authorization': 'Bearer '+token})
+                            .end(function(error, response, body) {
+                                if (error) {
+                                    done(error);
+                                } else {
+                                    response.should.have.status(200);
+                                    response.body.should.be.a('object');
+                                    response.body.should.have.property('message');
+                                    response.body.message.should.equal('Account deleted successfully');
+                                    done();
+                                }
+                            })
+                        }
+                })
+            }
+                
+            )
+            
+        })
+
+        it("should not delete user and all it's designs (invalid token)", (done) => {
+            Account.findOne( {'email': 'fake@fake.com'} )
+            .then((user) => {
+                chai.request(app)
+                .post('/accounts/authenticate')
+                .set('content-type', 'application/json')
+                .send({
+                    "email": "test@test.com",
+                    "password": "testtest"
+                })
+                .end(function(error, response, body) {
+                    if (error) {
+                        done(error);
+                    } else {
+                        const token = response.body.token;
+                        const user_id = user._id;
+                        chai.request(app)
+                            .delete('/accounts/' + user_id)
+                            .set({'Authorization': 'Bearer '+token})
+                            .end(function(error, response, body) {
+                                if (error) {
+                                    done(error);
+                                } else {
+                                    response.should.have.status(401);
+                                    response.body.should.be.a('object');
+                                    response.body.should.have.property('message');
+                                    response.body.message.should.equal('Invalid Token');
+                                    done();
+                                }
+                            })
+                        }
+                })
+            }
+                
+            )
+            
+        })
+
     })
 });
