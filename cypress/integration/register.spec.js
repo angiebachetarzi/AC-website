@@ -43,8 +43,7 @@ describe('Form', () => {
     .type(input+input)
     cy.get('[data-cy-form-friendCode]')
     .type(input)
-    cy.get('[data-cy-form-email]')
-      .type(input)
+    cy.get('.card-header').click()
     cy.get('.is-invalid')
     .should('have.length', 5);
   })
@@ -65,8 +64,12 @@ describe('Form', () => {
     cy.get('[data-cy-form-friendCode]')
     .type(friendCode)
     .type('{enter}');
+    cy.get('.card-header').click()
     cy.get('.is-invalid')
     .should('have.length', 0);
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/account/login')
+    })
   })
 
 })
