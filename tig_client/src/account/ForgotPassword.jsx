@@ -31,7 +31,7 @@ function ForgotPassword() {
                     <h3 className="card-header">Forgot Password</h3>
                     <div className="card-body">
                         <div className="form-group">
-                            <Field name="email" placeholder="Email" type="text" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} />
+                            <Field name="email" placeholder="Email" type="text" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} autoFocus data-cy-form-input/>
                             <ErrorMessage name="email" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-row">
@@ -46,8 +46,8 @@ function ForgotPassword() {
                     </div>
                 </Form>
             )}
-        </Formik>        
+        </Formik>
     )
 }
 
-export { ForgotPassword }; 
+export { ForgotPassword };
