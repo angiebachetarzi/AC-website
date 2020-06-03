@@ -10,7 +10,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha --timeout 15000 ./tests/*.test.js --exit"
+    "test": "mocha --timeout 20000 ./tests/*.test.js --exit"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -22,6 +22,7 @@
     "create-react-app": "^1.5.2",
     "express": "^4.17.1",
     "express-jwt": "^5.3.3",
+    "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.11",
