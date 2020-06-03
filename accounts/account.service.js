@@ -6,6 +6,8 @@ const sendEmail = require('_helpers/send-email');
 const db = require('_helpers/db');
 const Role = require('_helpers/role');
 const Account = db.Account;
+const Design = db.Design;
+const designService = require('../designs/design.service');
 
 module.exports = {
     authenticate,
@@ -160,6 +162,12 @@ async function update(id, params) {
 
 async function _delete(id) {
     const account = await getAccount(id);
+    //delete all designs belonging to user
+    const designs = await designService.getUserDesigns(id);
+    for (var i in designs) {
+        const design = await Design.findOne( { 'designID': designs[i].designID } );
+        design.remove();
+    }
     await account.remove();
 }
 
