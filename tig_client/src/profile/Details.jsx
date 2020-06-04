@@ -12,11 +12,11 @@ function Details() {
     return (
         <>
         <div className="jumbotron" id="profileDetails">
-            <h1 className="display-5">Profile</h1>
-            <p><span className="lead">Email: </span><span>{user.email}</span></p>
-            <p><span className="lead">Creator ID: </span><span>{user.creatorID}</span></p>
-            <p><span className="lead">Friend code: </span><span>{user.friendCode}</span></p>
-            <p><a className="lead" href="#">Need to update your profile? Contact us at info@the-islanders-guide.com!</a></p>
+            <p className="lead font-weight-bold">Profile</p>
+            <p><span className="lead font-weight-bold">Email: </span><span>{user.email}</span></p>
+            <p><span className="lead font-weight-bold">Creator ID: </span><span>{user.creatorID}</span></p>
+            <p><span className="lead font-weight-bold">Friend code: </span><span>{user.friendCode}</span></p>
+            <p><a className="lead font-weight-bold" href="#">Need to update your profile? Contact us at info@the-islanders-guide.com!</a></p>
         </div>
         <div className="card-deck">
         {designs && designs.map(design =>

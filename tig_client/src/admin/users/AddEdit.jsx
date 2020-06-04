@@ -77,7 +77,7 @@ function AddEdit({ history, match }) {
 
     return (
         <div className = "users">
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={console.log('submit')}>
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
             {({ errors, touched, isSubmitting, setFieldValue }) => {
                 useEffect(() => {
                     if (!isAddMode) {

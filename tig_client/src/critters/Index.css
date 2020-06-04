@@ -1,3 +1,11 @@
-.designs > * {
+.critters > * {
     text-align: center;
+}
+
+.jumbotron > *, .card-body > * {
+    font-size: x-large;
+}
+
+.input-group {
+    margin-bottom: 2%;
 }
