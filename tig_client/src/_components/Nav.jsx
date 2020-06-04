@@ -18,6 +18,7 @@ function Nav() {
     if (!user) return null;
 
     return (
+        <>
         <nav className="navbar nav-justified navbar-expand-lg navbar-dark">
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -25,6 +26,7 @@ function Nav() {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                 <NavLink className="nav-item nav-link active" to="/">Profile</NavLink>
+                <NavLink className="nav-item nav-link active" to="/critters/fish">Critters</NavLink>
                 <NavLink className="nav-item nav-link active" to="/designs">Designs</NavLink>
                 <NavLink className="nav-item nav-link active" to="/designs/upload">Upload</NavLink>
                 {user.role === Role.Admin &&
@@ -34,6 +36,22 @@ function Nav() {
                 </div>
             </div>
         </nav>
+        <Route path="/critters" component={CrittersNav} />
+        </>
     );
 }
+
+function CrittersNav({ match }) {
+    const { path } = match;
+
+    return (
+        <nav className="admin-nav navbar navbar-expand navbar-light">
+            <div className="navbar-nav">
+                <NavLink to={`${path}/fish`} className="nav-item nav-link">Fish</NavLink>
+                <NavLink to={`${path}/bugs`} className="nav-item nav-link">Bugs</NavLink>
+            </div>
+        </nav>
+    );
+}
+
 export { Nav }; 

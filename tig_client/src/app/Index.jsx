@@ -8,6 +8,7 @@ import { Profile } from '@/profile';
 import { Admin } from '@/admin';
 import { Account } from '@/account';
 import { Designs } from '@/designs';
+import { Critters } from '@/critters';
 
 import './Index.css'
 
@@ -29,6 +30,7 @@ function App() {
                 <Redirect from="/:url*(/+)" to={pathname.slice(0, -1)} />
                 <PrivateRoute exact path="/" component={Profile} />
                 <PrivateRoute path="/designs" component={Designs} />
+                <PrivateRoute path="/critters" component={Critters} />
                 <PrivateRoute path="/admin" roles={[Role.Admin]} component={Admin} />
                 <Route path="/account" component={Account} />
                 <Redirect from="*" to="/" />
