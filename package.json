@@ -14,7 +14,7 @@
     "mocha-test": "mocha --timeout 20000 ./tests/*.test.js --exit",
     "cypress": "./node_modules/.bin/cypress run",
     "cy-test": "start-test start-client http-get://localhost:8080 cypress",
-    "test": "(npm run cy-test && pm2 stop server) && npm run mocha-test "
+    "test": "npm run mocha-test "
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
