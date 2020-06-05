@@ -26,6 +26,7 @@ testing:
   
  script:
   - chmod 0777 ./node_modules/.bin/mocha
+  - chmod 0777 ./node_modules/.bin/start-test
   - npm run test
  artifacts:
   paths:
