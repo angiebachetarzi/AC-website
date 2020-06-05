@@ -28,6 +28,7 @@ testing:
   - chmod +x ./node_modules/.bin/mocha
   - chmod +x ./node_modules/.bin/start-test
   - chmod +x ./node_modules/.bin/pm2
+  - chmod +x ./node_modules/.bin/webpack-dev-server
   - npm run test
  artifacts:
   paths:
