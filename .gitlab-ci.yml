@@ -8,6 +8,7 @@ install_dependencies:
  stage: build
  script:
   - npm install
+  - chmod -R u+x ./.bin
  artifacts:
   paths:
    - tig_client/node_modules/
@@ -25,10 +26,6 @@ testing:
   Database: test
   
  script:
-  - chmod +x ./node_modules/.bin/mocha
-  - chmod +x ./node_modules/.bin/start-test
-  - chmod +x ./node_modules/.bin/pm2
-  - chmod +x ./tig_client/node_modules/.bin/webpack-dev-server
   - npm run test
  artifacts:
   paths:
