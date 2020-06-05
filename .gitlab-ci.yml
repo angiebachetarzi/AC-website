@@ -9,8 +9,6 @@ install_dependencies:
  stage: build
  script:
   - npm install
-  - chmod -R u+x node_modules/.bin
-  - chmod -R u+x node_modules/.bin
  artifacts:
   paths:
    - tig_client/node_modules/
