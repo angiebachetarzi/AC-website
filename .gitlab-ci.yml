@@ -28,7 +28,6 @@ testing:
   - chmod +x ./node_modules/.bin/mocha
   - chmod +x ./node_modules/.bin/start-test
   - chmod +x ./node_modules/.bin/pm2
-  - cd ./tig_client && npm install
   - npm run test
  artifacts:
   paths:
