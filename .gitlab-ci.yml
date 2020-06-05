@@ -2,17 +2,25 @@ image: node:latest
 
 stages:
  - build
+ - prepare
  - test
   
 install_dependencies:
  stage: build
  script:
   - npm install
-  - chmod -R u+x .bin
+  - chmod -R u+x node_modules/.bin
+  - chmod -R u+x node_modules/.bin
  artifacts:
   paths:
    - tig_client/node_modules/
    - node_modules/
+
+pre_testing:
+ stage: prepare
+ script:
+  - chmod -R u+x node_modules/.bin
+  - chmod -R u+x tig_client/node_modules/.bin
    
 testing:
  stage: test
