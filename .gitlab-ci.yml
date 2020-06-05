@@ -25,9 +25,10 @@ testing:
   Database: test
   
  script:
-  - chmod 0777 ./node_modules/.bin/mocha
-  - chmod 0777 ./node_modules/.bin/start-test
-  - chmod 0777 ./node_modules/.bin/pm2
+  - chmod +x ./node_modules/.bin/mocha
+  - chmod +x ./node_modules/.bin/start-test
+  - chmod +x ./node_modules/.bin/pm2
+  - cd ./tig_client && npm install
   - npm run test
  artifacts:
   paths:
