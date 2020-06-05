@@ -27,4 +27,5 @@ testing:
  script:
   - chmod -R +x node_modules/.bin
   - chmod -R +x tig_client/node_modules/.bin
+  - find tig_client/node_modules/ -type f -name xdg-open -exec chmod a+x {} \;
   - npm run test
