@@ -56,7 +56,7 @@ function Register({ history }) {
                             <ErrorMessage name="email" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">
-                            <Field name="creatorID" placeholder="Creator ID" type="text" className={'form-control' + (errors.creatorID && touched.creatorID ? ' is-invalid' : '')} data-cy-form-creatorID/>
+                            <Field name="creatorID" data-toggle="tooltip" data-placement="top" title="Exp: MA-2222-2222-2222" placeholder="Creator ID" type="text" className={'form-control' + (errors.creatorID && touched.creatorID ? ' is-invalid' : '')} data-cy-form-creatorID/>
                             <ErrorMessage name="creatorID" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-row">
@@ -70,7 +70,7 @@ function Register({ history }) {
                             </div>
                         </div>
                         <div className="form-group">
-                            <Field name="friendCode" placeholder="Friend code" type="text" className={'form-control' + (errors.friendCode && touched.friendCode ? ' is-invalid' : '')} data-cy-form-friendCode/>
+                            <Field name="friendCode" data-toggle="tooltip" data-placement="top" title="Exp: SW-2222-2222-2222" placeholder="Friend code" type="text" className={'form-control' + (errors.friendCode && touched.friendCode ? ' is-invalid' : '')} data-cy-form-friendCode/>
                             <ErrorMessage name="friendCode" component="div" className="invalid-feedback" />
                         </div>
                         <div className="form-group">

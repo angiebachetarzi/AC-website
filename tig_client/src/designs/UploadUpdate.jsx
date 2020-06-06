@@ -111,7 +111,7 @@ function UploadUpdate({ history, match }) {
                                 </div>
                                 <div className="form-group col-7">
                                     <label>Design ID</label>
-                                    <Field name="designID" id = "designID" type="text" className={'form-control' + (errors.designID && touched.designID ? ' is-invalid' : '')} />
+                                    <Field data-toggle="tooltip" data-placement="top" title="Exp: MO-00AA-0B0C-BB00" name="designID" id = "designID" type="text" className={'form-control' + (errors.designID && touched.designID ? ' is-invalid' : '')} />
                                     <ErrorMessage name="designID" component="div" className="invalid-feedback" />
                                 </div>
                                 <div className="form-group col-7 d-none">
@@ -124,7 +124,7 @@ function UploadUpdate({ history, match }) {
                                 <Field name="designImage" id = "designImage" type="text"/>
                             </div>
                             <div className="form-group">
-                                <input type="file" className="form-control-file" id="file" onChange={(event) => {toBase64(event.target.files[0]).then(function(result) {setFieldValue('designImage', result, false);})}} />
+                                <input type="file" className="form-control-file" id="file" accept="image/x-png,image/gif,image/jpeg" onChange={(event) => {toBase64(event.target.files[0]).then(function(result) {setFieldValue('designImage', result, false);})}} />
                             </div>
                             <div className="form-group">
                                 <button type="submit" disabled={isSubmitting} className="btn btn-primary">

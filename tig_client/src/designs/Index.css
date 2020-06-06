@@ -1,3 +1,7 @@
 .designs > * {
     text-align: center;
 }
+
+.card {
+    column-count: 2;
+}
