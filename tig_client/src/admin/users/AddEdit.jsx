@@ -120,7 +120,7 @@ function AddEdit({ history, match }) {
                         </div>
                         <div className="form-row">
                             <div className="form-group col">
-                                <label>Password</label>
+                                <label>You can change the user's password but you don't have to</label>
                                 <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
                                 <ErrorMessage name="password" component="div" className="invalid-feedback" />
                             </div>

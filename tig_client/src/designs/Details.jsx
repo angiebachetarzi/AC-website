@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { accountService, designService } from '@/_services';
+import { accountService, designService,alertService } from '@/_services';
 
 import './Index.css';
 
-function Details({ match }) {
+function Details({ history, match }) {
     const { path } = match;
     const { design_id } = match.params;
     const user = accountService.userValue, [design, setDesign] = useState(null);
