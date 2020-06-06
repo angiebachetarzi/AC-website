@@ -10,7 +10,6 @@ install_dependencies:
   - npm install
  artifacts:
   paths:
-   - tig_client/node_modules/
    - node_modules/
    
 testing:
@@ -26,7 +25,8 @@ testing:
   
  script:
   - chmod -R +x node_modules/.bin
-  - chmod -R +x tig_client/node_modules/.bin
+  # next lines were supposed to be for testing with cypress
+  #- chmod -R +x tig_client/node_modules/.bin
   #- find tig_client/node_modules/ -type f -name xdg-open -exec chmod a+x {} \;
   #- apt-get install xvfb
   #- node_modules/.bin/cypress install
